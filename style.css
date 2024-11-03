@@ -72,12 +72,12 @@ nav .left-section{
     display: none;
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     top: 0;
     background-color: #f7f7f7;
     left: 0;
     overflow: hidden;
-    z-index: 10;
+    z-index: 1000;
 }
 .nav-head{
     display: flex;
@@ -537,6 +537,7 @@ footer a{
     overflow: hidden;
     width: 100%;
     height: 100%;
+    z-index: 900;
     /* transition: .5s linear; */
 }
 .product-section .cancel-btn{
@@ -636,6 +637,7 @@ footer a{
     overflow-y: auto;
     transform: translateX(100%);
     transition: .3s;
+    z-index: 1000;
 }
 .cart-open{
     transform: translateX(0%);
@@ -820,7 +822,7 @@ input[type="number"] {
     justify-content: space-between;
     width: 100%;
 } */
- .alert{
+ .alert, .warning-alert{
     position: fixed;
     right: 30px;
     top: 15%;
@@ -836,8 +838,9 @@ input[type="number"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: #eeeaea;
     animation: remove 4s linear 3s forwards;
+    z-index: 10000;
  }
- .alert::after{
+ .alert::after, .warning-alert::after{
     position: absolute;
     content: '';
     bottom: 0;

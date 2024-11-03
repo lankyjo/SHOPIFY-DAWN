@@ -222,10 +222,20 @@ document.addEventListener('DOMContentLoaded', function(){
             alert.remove()
         }, 7000)
     }
+    function createWarningAlert(){
+        let alert = document.createElement('div')
+        alert.classList.add('alert')
+        alert.innerHTML = '<span><i class="ri-shopping-cart-2-line"></i> Already added!</span>'
+        document.body.appendChild(alert)
+        setTimeout(()=>{
+            alert.remove()
+        }, 7000)
+    }
 
     cartBtn.addEventListener('click', () => {
         if (addToCartIsClicked) {
             console.log('Cannot click anymore');
+            createWarningAlert()
             return;
         } 
         else {
@@ -257,10 +267,18 @@ document.addEventListener('DOMContentLoaded', function(){
     carts.forEach(cart=>{
         cart.addEventListener('click',()=>{
             document.querySelector('.cart-section').classList.toggle('cart-open')
+            // console.log(document.querySelector('.cart-section').classList.value);
+            if(document.querySelector('.cart-section').classList.contains('cart-open')){
+                console.log('contains');
+                document.body.style.overflowY = 'hidden'
+            }
+            else{
+                console.log('removed');
+                document.body.style.overflowY = 'unset'
+            }
             const menu = document.querySelectorAll('.nav-menu')
             menu.forEach(menu=>{
-            // menu.style.transform = 'translateX(-100%)'
-            document.body.style.overflowY =  'unset'
+            // document.body.style.overflowY =  'unset'
             tl.reverse()
             })
         })
@@ -268,6 +286,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.querySelector('.continue').addEventListener('click', ()=>{
         document.querySelector('.cart-section').classList.toggle('cart-open')
     })
+
     // CART FUNCTION END
 
 
