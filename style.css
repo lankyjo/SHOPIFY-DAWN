@@ -207,6 +207,7 @@ nav .left-section{
 }
 .cart{
     position: relative;
+    cursor: pointer;
 }
 .cart-badge{
     position: absolute;
@@ -819,6 +820,57 @@ input[type="number"] {
     justify-content: space-between;
     width: 100%;
 } */
+ .alert{
+    position: fixed;
+    right: 30px;
+    top: 15%;
+    width: 150px;
+    height: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #eeeaea;
+    animation: remove 4s linear 3s forwards;
+ }
+ .alert::after{
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: green;
+    animation: load 3s linear forwards;
+ }
+ @keyframes remove {
+    100%{
+        opacity: 0;
+    }
+ }
+ @keyframes load {
+    0%{
+        max-width: 0%;
+    }
+    100%{
+        max-width: 100%;
+    }
+ }
+ .top-menu{
+    transition: .5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #f7f7f7;
+    /* filter: drop-shadow(0 2px 13px rgba(0,0,0,0.5)); */
+    box-shadow: 0 2px 13px rgba(0,0,0,0.5);
+    z-index: 30;
+ }
 @media screen and (max-width: 900px) {
     .cart-heading h1{
         letter-spacing: 0px;

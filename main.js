@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-
-
-
-    const shopItems = document.querySelectorAll('.shop-item')
+    const shopItems = document.querySelectorAll('.shop-items')
     const popUps = document.querySelectorAll('.pop-up')
     const dropDowns = document.querySelectorAll('.ri-arrow-down-s-line')
+    console.log(popUps.length);
+    console.log(dropDowns.length);
+    console.log(shopItems.length);
+    
     
     shopItems.forEach((item, index) =>{
         item.addEventListener('click', function(event){
@@ -25,12 +26,29 @@ document.addEventListener('DOMContentLoaded', function(){
         popUps.forEach(popUp => popUp.classList.remove('open-pop-up'))
         dropDowns.forEach(dropdown => dropdown.classList.remove('ri-arrow-up-s-line'))
     })
+    let lastScrollTop = 0;
     window.addEventListener('scroll', function(){
+        let currentScroll = window.scrollY;
+        const nav = document.querySelector('.nav');
         if(this.scrollY>250){
             popUps.forEach(popUp => popUp.classList.remove('open-pop-up'))
             dropDowns.forEach(dropdown => dropdown.classList.remove('ri-arrow-up-s-line'))
         }
+        if (currentScroll < 300) {
+            // If scrolled less than 500px, remove the 'top-menu' class
+            nav.classList.remove('top-menu');
+        } else if (currentScroll > lastScrollTop) {
+            // Scrolling down and passed 500px
+            nav.classList.remove('top-menu');
+        } else if (currentScroll < lastScrollTop) {
+            // Scrolling up
+            nav.classList.add('top-menu');
+        }
+    
+        lastScrollTop = currentScroll;
     })
+
+
 
     const galleryImages = [
         {
@@ -195,6 +213,15 @@ document.addEventListener('DOMContentLoaded', function(){
     
         return cartItem
     }
+    function createAlert(){
+        let alert = document.createElement('div')
+        alert.classList.add('alert')
+        alert.innerHTML = '<span><i class="ri-shopping-cart-2-line"></i> Added to cart!</span>'
+        document.body.appendChild(alert)
+        setTimeout(()=>{
+            alert.remove()
+        }, 7000)
+    }
 
     cartBtn.addEventListener('click', () => {
         if (addToCartIsClicked) {
@@ -221,6 +248,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let itemName = document.querySelectorAll('.product-name')        
             cartContainer.insertBefore(createCartItem(galleryImages[currentProductNumber].backgroundImage, itemName[currentProductNumber].textContent, galleryImages[currentProductNumber].price, currentProductNumber), cartContainer.firstChild)
             updateEstimate()
+            createAlert()
         }
     });
 
@@ -236,6 +264,9 @@ document.addEventListener('DOMContentLoaded', function(){
             tl.reverse()
             })
         })
+    })
+    document.querySelector('.continue').addEventListener('click', ()=>{
+        document.querySelector('.cart-section').classList.toggle('cart-open')
     })
     // CART FUNCTION END
 
@@ -277,6 +308,10 @@ document.addEventListener('DOMContentLoaded', function(){
         let productClose = document.querySelector('.product-header .cancel-btn')
         productClose.addEventListener('click', ()=>{
             tl2.reverse()
+            document.body.style.overflowY =  'unset'
+        })
+        document.querySelector('.more-like-this a').addEventListener('click', function(){
+                        tl2.reverse()
             document.body.style.overflowY =  'unset'
         })
     })
