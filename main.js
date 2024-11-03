@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function(){
             });
             cards[productIndex].classList.remove('selected')
             addToCartIsClicked = false
+            updateEstimate()
         })
         input.addEventListener('blur', () => {
             if (input.value == '') {
