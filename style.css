@@ -35,6 +35,72 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 0, 0, 0.7); /* Darker thumb color on hover */
 }
+.preloader{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* background: #f7f7f7; */
+    background:linear-gradient(141deg, #ccc 25%, #eee 40%, #ddd 55%);
+    z-index: 100000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.preloader-text{
+    font-size: 20px;
+    width: fit-content;
+    /* background: #14101034; */
+    animation: remove 3s forwards 4.5s;
+}
+.preloader-text div{
+    display: inline-block;
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+.first{
+    animation: showup 5s forwards;
+}
+@keyframes showup {
+    0% {opacity:0;}
+    80% {opacity:1;}
+    100% {opacity:1;}
+}
+.second{
+    width: 0px;
+    animation: open 2s forwards 2s;
+}
+@keyframes open {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: 120px;
+    }
+}
+.second span{
+    /* opacity: 0; */
+    margin-left: -300px;
+    animation: slideIn 1.5s forwards 2s;
+}
+@keyframes slideIn {
+    0%{
+        margin-left: -300px;
+    }
+    100%{
+        margin-left: 0px;
+    }
+}
+@keyframes remove {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
 .container{
     width: 100%;
     border: 1px solid #22283133;

@@ -1,5 +1,22 @@
 document.addEventListener('DOMContentLoaded', function(){
 
+let preloader = document.querySelector('.preloader');
+if (preloader) {
+    document.body.style.overflowY = 'hidden';
+    
+    gsap.to(preloader, {
+        opacity: 0,
+        duration: 1,
+        delay: 7.5,
+        onComplete: () => {
+            preloader.remove();
+            document.body.style.overflowY = 'scroll'; // Re-enable scrolling once preloader is gone
+        }
+    });
+
+} else {
+    document.body.style.overflowY = 'scroll';
+}
     const shopItems = document.querySelectorAll('.shop-items')
     const popUps = document.querySelectorAll('.pop-up')
     const dropDowns = document.querySelectorAll('.ri-arrow-down-s-line')
